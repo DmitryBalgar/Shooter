@@ -8,9 +8,7 @@ public class MachinGun : Weapon
     {
         _currentAmmo = _maxAmmo;
         CurrentAmmoUpdate?.Invoke(_currentAmmo);
-
     }
-
     public override void Shoot(Transform shootPoint, Vector3 shootDir)
     {
         if (_currentAmmo <= 0) return;

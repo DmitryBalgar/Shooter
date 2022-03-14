@@ -46,6 +46,6 @@ MonoBehaviour:
   _weaponType: 3
   _icon: {fileID: -3589753207154303887, guid: 59619a3dd35bb554ca6f3971d1594c6b, type: 3}
   _currentDelay: 0.5
-  _maxAmmo: 3
+  _maxAmmo: 15
   Bullet: {fileID: 3006264594707034777, guid: 35628e607d7b2bc4b9221080874f3248, type: 3}
   MuzzleeEfct: {fileID: 6705641819626559965, guid: 2735762179c8e464c8bbc00fb1b99cb5, type: 3}

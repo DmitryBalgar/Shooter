@@ -18,6 +18,7 @@ public class Bullet : MonoBehaviour
         _shootDir = shootDir;
         transform.eulerAngles = new Vector3(0, 0, GetAngleFromVectorFloat(shootDir));
         _rb = GetComponent<Rigidbody2D>();
+        _rb.velocity = _shootDir * _speed;
         Destroy(gameObject, _timeToDestroy);
 
     }
@@ -27,10 +28,8 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.TryGetComponent<IDamageable>(out IDamageable damageable))
         {
             var contact = collision.contacts[0];
-            
             damageable.TakeDamage(_damage, contact.point, _shootDir);
         }
-
         #region ParticleEffect
         GameObject hitEffect = Instantiate(_particle, transform.position, Quaternion.identity);
         Destroy(hitEffect, 1f);
@@ -39,10 +38,6 @@ public class Bullet : MonoBehaviour
     }
 
 
-    private void FixedUpdate()
-    {
-        _rb.velocity = _shootDir * _speed;
-    }
     private static float GetAngleFromVectorFloat(Vector3 dir)
     {
         dir = dir.normalized;

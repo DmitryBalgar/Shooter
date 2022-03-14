@@ -12,12 +12,15 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] private float _currentDelay;
 
     [SerializeField] protected int _maxAmmo;
-    protected int _currentAmmo;
     [SerializeField] protected Bullet Bullet;
     [SerializeField] protected GameObject MuzzleeEfct;
 
+    protected int _currentAmmo;
+
     public abstract event UnityAction<int> CurrentAmmoUpdate;
+
     public int MaxAmmo => _maxAmmo;
+    public int CurrentAmmo => _currentAmmo;
     public Sprite Icon => _icon;
     public float CurrentDelay => _currentDelay;
     public WeaponType CurrentWeapontype => _weaponType;
@@ -27,5 +30,11 @@ public abstract class Weapon : MonoBehaviour
     public abstract void MuzzleEffect(Transform shootPoint);
 
     public abstract void ShowInfo();
- 
+    public void IncreaseAmmo(int count)
+    {
+        _currentAmmo += count;
+        if (_currentAmmo > _maxAmmo)
+            _currentAmmo = _maxAmmo;
+        ShowInfo();
+    }
 }

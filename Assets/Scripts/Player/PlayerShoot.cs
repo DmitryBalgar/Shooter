@@ -13,6 +13,7 @@ public class PlayerShoot : MonoBehaviour
     private int _currentAmmo;
     private bool _canShoot = true;
     public Weapon CurrentWeapon => _currentWeapon;
+    public List<Weapon> Weapons => _weapons;
 
     public event UnityAction<Sprite> WeaponChanged;
     public event UnityAction<int, int> CurrentAmmoUpdateUI;
@@ -25,12 +26,12 @@ public class PlayerShoot : MonoBehaviour
     private void OnEnable()
     {
         _playerInput.onShoot += Shooting;
-        _currentWeapon.CurrentAmmoUpdate += DecreaseAmmo;
+        _currentWeapon.CurrentAmmoUpdate += AmmoCountChange;
     }
     private void OnDisable()
     {
         _playerInput.onShoot -= Shooting;
-        _currentWeapon.CurrentAmmoUpdate -= DecreaseAmmo;
+        _currentWeapon.CurrentAmmoUpdate -= AmmoCountChange;
     }
     private void Start()
     {
@@ -48,7 +49,7 @@ public class PlayerShoot : MonoBehaviour
             StartCoroutine(ShootDelay());
         }
     }
-    private void DecreaseAmmo(int curentAmmo)
+    private void AmmoCountChange(int curentAmmo)
     {
         _currentAmmo = curentAmmo;
         CurrentAmmoUpdateUI?.Invoke(_currentAmmo, _currentWeapon.MaxAmmo);
@@ -64,9 +65,9 @@ public class PlayerShoot : MonoBehaviour
         _ind++;
         if (_ind > _weapons.Count - 1)
             _ind = 0;
-        _currentWeapon.CurrentAmmoUpdate -= DecreaseAmmo;
+        _currentWeapon.CurrentAmmoUpdate -= AmmoCountChange;
         _currentWeapon = _weapons[_ind];
-        _currentWeapon.CurrentAmmoUpdate += DecreaseAmmo;
+        _currentWeapon.CurrentAmmoUpdate += AmmoCountChange;
         _currentWeapon.ShowInfo();
         WeaponChanged?.Invoke(_currentWeapon.Icon);
         CurrentAmmoUpdateUI?.Invoke(_currentAmmo, _currentWeapon.MaxAmmo);
@@ -77,9 +78,9 @@ public class PlayerShoot : MonoBehaviour
         _ind--;
         if (_ind < 0)
             _ind = _weapons.Count - 1;
-        _currentWeapon.CurrentAmmoUpdate -= DecreaseAmmo;
+        _currentWeapon.CurrentAmmoUpdate -= AmmoCountChange;
         _currentWeapon = _weapons[_ind];
-        _currentWeapon.CurrentAmmoUpdate += DecreaseAmmo;
+        _currentWeapon.CurrentAmmoUpdate += AmmoCountChange;
         _currentWeapon.ShowInfo();
         WeaponChanged?.Invoke(_currentWeapon.Icon);
         CurrentAmmoUpdateUI?.Invoke(_currentAmmo, _currentWeapon.MaxAmmo);
