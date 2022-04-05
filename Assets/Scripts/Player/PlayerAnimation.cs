@@ -42,9 +42,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         _animator.SetBool("onShoot", true);
     }
-
-
-
-
-
 }
+
+
+

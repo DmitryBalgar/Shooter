@@ -36,8 +36,8 @@ public class PlayerShoot : MonoBehaviour
     private void Start()
     {
         WeaponChanged?.Invoke(_currentWeapon.Icon);
-        _currentWeapon.ShowInfo();
-        CurrentAmmoUpdateUI?.Invoke(_currentAmmo, _currentWeapon.MaxAmmo);
+        _currentWeapon.AmmoUIUpdate();
+        CurrentAmmoUpdateUI?.Invoke(_currentAmmo, _currentWeapon.MaxAmmunition);
     }
 
     private void Shooting(Vector2 dir)
@@ -52,7 +52,7 @@ public class PlayerShoot : MonoBehaviour
     private void AmmoCountChange(int curentAmmo)
     {
         _currentAmmo = curentAmmo;
-        CurrentAmmoUpdateUI?.Invoke(_currentAmmo, _currentWeapon.MaxAmmo);
+        CurrentAmmoUpdateUI?.Invoke(_currentAmmo, _currentWeapon.MaxAmmunition);
     }
 
     private IEnumerator ShootDelay()
@@ -68,9 +68,9 @@ public class PlayerShoot : MonoBehaviour
         _currentWeapon.CurrentAmmoUpdate -= AmmoCountChange;
         _currentWeapon = _weapons[_ind];
         _currentWeapon.CurrentAmmoUpdate += AmmoCountChange;
-        _currentWeapon.ShowInfo();
+        _currentWeapon.AmmoUIUpdate();
         WeaponChanged?.Invoke(_currentWeapon.Icon);
-        CurrentAmmoUpdateUI?.Invoke(_currentAmmo, _currentWeapon.MaxAmmo);
+        CurrentAmmoUpdateUI?.Invoke(_currentAmmo, _currentWeapon.MaxAmmunition);
 
     }
     public void WeaponSwapLeft()
@@ -81,8 +81,8 @@ public class PlayerShoot : MonoBehaviour
         _currentWeapon.CurrentAmmoUpdate -= AmmoCountChange;
         _currentWeapon = _weapons[_ind];
         _currentWeapon.CurrentAmmoUpdate += AmmoCountChange;
-        _currentWeapon.ShowInfo();
+        _currentWeapon.AmmoUIUpdate();
         WeaponChanged?.Invoke(_currentWeapon.Icon);
-        CurrentAmmoUpdateUI?.Invoke(_currentAmmo, _currentWeapon.MaxAmmo);
+        CurrentAmmoUpdateUI?.Invoke(_currentAmmo, _currentWeapon.MaxAmmunition);
     }
 }

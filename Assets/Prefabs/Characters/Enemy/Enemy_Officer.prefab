@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 635177508503150904}
   - component: {fileID: 635177508503150919}
   - component: {fileID: 635177508503150918}
-  - component: {fileID: 635177508503150905}
   - component: {fileID: 635177508503150916}
+  - component: {fileID: 4682287236995580748}
   m_Layer: 0
   m_Name: Officer GFX
   m_TagString: Untagged
@@ -105,32 +105,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!61 &635177508503150905
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 635177508503150907}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.09550309, y: 0.08116555}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2.8125}
-    newSize: {x: 1, y: 1.40625}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.8564911, y: 1.8078825}
-  m_EdgeRadius: 0
 --- !u!114 &635177508503150916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,6 +119,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 15
   _bloodParticle: {fileID: 3725444131880985366, guid: bf667bc641b0cb24fb595edc2441a72f, type: 3}
+--- !u!70 &4682287236995580748
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635177508503150907}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.07269931, y: 0.010304809}
+  m_Size: {x: 0.6597557, y: 1.8454173}
+  m_Direction: 0
 --- !u!1 &635177509357651348
 GameObject:
   m_ObjectHideFlags: 0

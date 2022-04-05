@@ -1,15 +1,13 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-public class GunAmmo : MonoBehaviour
+public abstract class Ammo : MonoBehaviour
 {
-    [SerializeField] private int _ammoCount;
-    [SerializeField] private Weapon.WeaponType _currentType;
-
+    [SerializeField] protected AmmoScriptableObject CurrentAmmo;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent<PlayerShoot>(out PlayerShoot playerShoot))
         {
-            IncreaseAmmo(playerShoot, _currentType);
+            IncreaseAmmo(playerShoot, CurrentAmmo._currentType);
         }
     }
     private void IncreaseAmmo(PlayerShoot playerShoot, Weapon.WeaponType weaponType)
@@ -18,9 +16,9 @@ public class GunAmmo : MonoBehaviour
         {
             if (playerShoot.Weapons[i].CurrentWeapontype == weaponType)
             {
-                if (playerShoot.Weapons[i].CurrentAmmo < playerShoot.Weapons[i].MaxAmmo)
+                if (playerShoot.Weapons[i].CurrentAmmunition < playerShoot.Weapons[i].MaxAmmunition)
                 {
-                    playerShoot.Weapons[i].IncreaseAmmo(_ammoCount);
+                    playerShoot.Weapons[i].IncreaseAmmo(CurrentAmmo._ammoCount);
                     Destroy(gameObject);
                     return;
                 }

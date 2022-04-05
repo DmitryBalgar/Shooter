@@ -44,8 +44,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weaponType: 0
-  _icon: {fileID: -4746390291930131888, guid: 59619a3dd35bb554ca6f3971d1594c6b, type: 3}
+  _icon: {fileID: 21300000, guid: 1d77eacd99a0dd04bbb9d5d3a4a7708a, type: 3}
   _currentDelay: 0.4
-  _maxAmmo: 20
-  Bullet: {fileID: 3006264594707034777, guid: ee50761d346ece441b8b741f537b794e, type: 3}
-  MuzzleeEfct: {fileID: 6705641819626559965, guid: 2735762179c8e464c8bbc00fb1b99cb5, type: 3}
+  MaxAmmo: 999
+  BulletsPool: {fileID: 0}
+  MuzzleEffectsPool: {fileID: 0}
+  ShellPrefab: {fileID: 2794568277630057274, guid: 97886572f09fc8c488e8a1faa15b9376, type: 3}
+  _shellPositionSpawm: {fileID: 0}

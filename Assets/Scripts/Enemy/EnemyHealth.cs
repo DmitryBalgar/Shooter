@@ -8,12 +8,12 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     private int _currentHealth;
     private Animator _anim;
-    private BoxCollider2D _colider;
+    private CapsuleCollider2D _colider;
 
     private void Start()
     {
         _currentHealth = _maxHealth;
-        _colider = GetComponent<BoxCollider2D>();
+        _colider = GetComponent<CapsuleCollider2D>();
         _anim = GetComponent<Animator>();
     }
     public void TakeDamage(int damageValue, Vector2 contactPoint, Vector2 shootingDirection)
