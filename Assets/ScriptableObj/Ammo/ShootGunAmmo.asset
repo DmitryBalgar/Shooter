@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb317195cbef384fad4f951047e933c, type: 3}
   m_Name: ShootGunAmmo
   m_EditorClassIdentifier: Assembly-CSharp::AmmoSO
-  _currentType: 3
-  _sprite: {fileID: 21300000, guid: cde383c87489f1d4cbde9ecd78ef0203, type: 3}
-  _ammoCount: 5
+  CurrentType: 2
+  Sprite: {fileID: 21300000, guid: cde383c87489f1d4cbde9ecd78ef0203, type: 3}
+  AmmoCount: 15

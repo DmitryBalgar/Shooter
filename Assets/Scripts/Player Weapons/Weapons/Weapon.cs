@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -15,6 +14,7 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] protected Pool MuzzleEffectsPool;
     [SerializeField] protected Rigidbody2D ShellPrefab;
     [SerializeField] private Transform _shellPositionSpawm;
+    [SerializeField] protected float _decreaseLifetimeBullet;
 
     protected int CurrentAmmo;
     public abstract event UnityAction<int> CurrentAmmoUpdate;
@@ -35,8 +35,6 @@ public abstract class Weapon : MonoBehaviour
     public void IncreaseAmmo(int count)
     {
         CurrentAmmo += count;
-        if (CurrentAmmo > MaxAmmo)
-            CurrentAmmo = MaxAmmo;
         AmmoUIUpdate();
     }
     public void BulletShellInstantiate(Vector3 spawnDir)

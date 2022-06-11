@@ -23,7 +23,7 @@ public class MachinGun : Weapon
                                                             shootPoint.position.y + Random.Range(-0.2f, 0.2f),
                                                             shootPoint.position.z),
                                                             Quaternion.identity).GetComponent<Bullet>();
-            clone.BulletInit(shootDir);
+            clone.BulletInit(shootDir, _decreaseLifetimeBullet);
             CurrentAmmo--;
             CurrentAmmoUpdate?.Invoke(CurrentAmmo);
 

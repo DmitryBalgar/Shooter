@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-interface IDamageable
+  interface IDamageable
 {
-     void TakeDamage(int damageValue, Vector2 damagePoint, Vector2 shotingDirection);
+    public void TakeDamage(int damageValue, Vector2 damagePoint, Vector2 shotingDirection);
+
 }

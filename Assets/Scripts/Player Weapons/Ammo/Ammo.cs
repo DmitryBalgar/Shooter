@@ -3,22 +3,31 @@
 public abstract class Ammo : MonoBehaviour
 {
     [SerializeField] protected AmmoScriptableObject CurrentAmmo;
+    [SerializeField] private GameObject _playerAmmoPopUpPrefab;
+    
+    private int _currentIncrease;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<PlayerShoot>(out PlayerShoot playerShoot))
+        if (collision.TryGetComponent<WeaponController>(out WeaponController weaponChanger))
         {
-            IncreaseAmmo(playerShoot, CurrentAmmo._currentType);
+            IncreaseAmmo(weaponChanger, CurrentAmmo.CurrentType);
         }
     }
-    private void IncreaseAmmo(PlayerShoot playerShoot, Weapon.WeaponType weaponType)
+    private void IncreaseAmmo(WeaponController weaponChanger, Weapon.WeaponType ammoType)
     {
-        for (int i = 0; i < playerShoot.Weapons.Count; i++)
+        for (int i = 0; i < weaponChanger.Weapons.Count; i++)
         {
-            if (playerShoot.Weapons[i].CurrentWeapontype == weaponType)
+            if (weaponChanger.Weapons[i].CurrentWeapontype == ammoType)
             {
-                if (playerShoot.Weapons[i].CurrentAmmunition < playerShoot.Weapons[i].MaxAmmunition)
+                if (weaponChanger.Weapons[i].CurrentAmmunition < weaponChanger.Weapons[i].MaxAmmunition)
                 {
-                    playerShoot.Weapons[i].IncreaseAmmo(CurrentAmmo._ammoCount);
+                    if (weaponChanger.Weapons[i].CurrentAmmunition + CurrentAmmo.AmmoCount > weaponChanger.Weapons[i].MaxAmmunition)
+                        _currentIncrease = weaponChanger.Weapons[i].MaxAmmunition - weaponChanger.Weapons[i].CurrentAmmunition;
+                    else _currentIncrease = CurrentAmmo.AmmoCount;
+
+                    weaponChanger.Weapons[i].IncreaseAmmo(_currentIncrease);
+                    Instantiate(_playerAmmoPopUpPrefab, transform.localPosition + Vector3.up/2, Quaternion.identity, null).GetComponent<PlayerAmmoPopUp>().ShowIncome(_currentIncrease, weaponChanger.Weapons[i]);
                     Destroy(gameObject);
                     return;
                 }

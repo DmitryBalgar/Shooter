@@ -15,10 +15,18 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         _currentHealth = _maxHealth;
     }
 
-    public void TakeDamage(int damageValue, Vector2 damagePoint, Vector2 shootingDir)
+    public void TakeDamage(int damageValue, Vector2 damagePoint, Vector2 shotingDirection)
     {
         //UI event
 
         _currentHealth -= damageValue;
+        if(_currentHealth <=0)
+        {
+            Debug.Log("Player dead");
+            //event
+            //animation
+            //fade
+        }
     }
+
 }

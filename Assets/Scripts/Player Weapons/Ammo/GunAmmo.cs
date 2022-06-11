@@ -2,10 +2,13 @@ using UnityEngine;
 public class GunAmmo : Ammo
 {
     private SpriteRenderer _spriteRenderer;
-    private void Start()
+    private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _spriteRenderer.sprite = CurrentAmmo._sprite;
+    }
+    private void Start()
+    {
+        _spriteRenderer.sprite = CurrentAmmo.Sprite;
     }
 
 }

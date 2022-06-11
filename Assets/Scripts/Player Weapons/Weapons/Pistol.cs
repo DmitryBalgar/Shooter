@@ -18,7 +18,7 @@ public class Pistol : Weapon
         List<Bullet> shootedBullets = new List<Bullet>();
 
         Bullet clone = BulletsPool.GetFreeElement(shootPoint.position).GetComponent<Bullet>();
-        clone.BulletInit(shootDir);
+        clone.BulletInit(shootDir, _decreaseLifetimeBullet);
         shootedBullets.Add(clone);
         
         MuzzleEffect(shootPoint);

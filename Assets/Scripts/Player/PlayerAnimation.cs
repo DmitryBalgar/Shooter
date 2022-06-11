@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
     [SerializeField] private PlayerMovement _playerMovement;
     [SerializeField] private PlayerInput _playerInput;
-    [SerializeField] private PlayerShoot _playerShoot;
+    [SerializeField] private WeaponController _weaponController;
     [SerializeField] private Animator _animator;
 
     private void OnEnable()
@@ -30,7 +28,7 @@ public class PlayerAnimation : MonoBehaviour
     private void Aim()
     {
         _animator.SetBool("isAim", true);
-        _animator.SetInteger("weaponType", ((int)_playerShoot.CurrentWeapon.CurrentWeapontype));
+        _animator.SetInteger("weaponType", ((int)_weaponController.CurrentWeapon.CurrentWeapontype));
     }
     private void StopAim()
     {

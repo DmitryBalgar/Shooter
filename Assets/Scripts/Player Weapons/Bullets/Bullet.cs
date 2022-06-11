@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -19,18 +17,21 @@ public class Bullet : PoolObject
         _rb = GetComponent<Rigidbody2D>();
     }
 
-    public void BulletInit(Vector3 shootDir)
+    public void BulletInit(Vector3 shootDir, float decreaseLifetime)
     {
         _shootDir = shootDir;
         transform.eulerAngles = new Vector3(0, 0, GetAngleFromVectorFloat(shootDir));
         _rb.velocity = shootDir * _speed;
-        ReturnToPool(_timeToDestroy);
+        if (_timeToDestroy - decreaseLifetime <= 0)
+            throw new System.Exception("Bullet lifetime < 0");
+        ReturnToPool(_timeToDestroy - decreaseLifetime);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent<IDamageable>(out IDamageable damageable))
+        if (collision.gameObject.TryGetComponent(out IDamageable damageable))
         {
+            ReturnToPool();
             var contact = collision.contacts[0];
             damageable.TakeDamage(_damage, contact.point, _shootDir);
         }

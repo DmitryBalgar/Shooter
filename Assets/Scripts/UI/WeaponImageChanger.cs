@@ -6,20 +6,20 @@ using TMPro;
 
 public class WeaponImageChanger : MonoBehaviour
 {
-    [SerializeField] private PlayerShoot _playerShoot;
+    [SerializeField] private WeaponController _weaponChanger;
     [SerializeField] private Image _image;
     [SerializeField] private TMP_Text _currentAmmo;
     [SerializeField] private TMP_Text _maxAmmo;
 
     private void OnEnable()
     {
-        _playerShoot.WeaponChanged += ChangeImage;
-        _playerShoot.CurrentAmmoUpdateUI += AmmoCountUpdate;
+        _weaponChanger.WeaponChanged += ChangeImage;
+        _weaponChanger.CurrentAmmoUpdateUI += AmmoCountUpdate;
     }
     private void OnDisable()
     {
-        _playerShoot.WeaponChanged -= ChangeImage;
-        _playerShoot.CurrentAmmoUpdateUI -= AmmoCountUpdate;
+        _weaponChanger.WeaponChanged -= ChangeImage;
+        _weaponChanger.CurrentAmmoUpdateUI -= AmmoCountUpdate;
     }
 
     private void ChangeImage(Sprite sprite)
